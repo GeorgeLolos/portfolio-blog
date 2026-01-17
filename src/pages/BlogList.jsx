@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Rocket, Brain, TrendingUp, Briefcase } from 'lucide-react';
+import { useSEO, generateBlogListSchema } from '../hooks/useSEO';
 
 const categoryIcons = {
     "Private Equity": Building2,
@@ -21,6 +22,14 @@ const categoryColors = {
 };
 
 export const BlogList = ({ posts }) => {
+    // SEO for blog listing
+    useSEO({
+        title: 'Case Studies & Insights | George Lolos',
+        description: 'Deep dives into technology leadership, due diligence findings, and lessons learned from building ventures at Google, Uber, Bain and beyond.',
+        type: 'website',
+        structuredData: generateBlogListSchema(posts)
+    });
+
     return (
         <div className="pt-24 sm:pt-32 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-7xl mx-auto">

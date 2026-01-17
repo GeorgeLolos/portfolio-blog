@@ -10,9 +10,17 @@ import { Contact } from './components/Contact';
 import { FeaturedProjects } from './components/FeaturedProjects';
 import { BlogList } from './pages/BlogList';
 import { BlogPost } from './pages/BlogPost';
+import { useSEO } from './hooks/useSEO';
 
 // Landing Page Component
 function LandingPage() {
+  // SEO for landing page
+  useSEO({
+    title: 'George Lolos | Fractional CTO & Engineering Leader | Ex-Google, Uber, Bain',
+    description: 'Engineering Executive with 15+ years leading at Google, Uber, Bain. Fractional CTO, Technical Due Diligence, AI Transformation & Venture Building expert serving Europe & Middle East.',
+    type: 'website'
+  });
+
   return (
     <>
       <Hero profile={PROFILE} />

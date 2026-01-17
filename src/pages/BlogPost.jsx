@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, TrendingUp, Building2, Rocket, Brain, Briefcase, User } from 'lucide-react';
+import { useSEO, generateBlogPostingSchema } from '../hooks/useSEO';
 
 const categoryIcons = {
     "Private Equity": Building2,
@@ -23,6 +24,14 @@ const categoryColors = {
 export const BlogPost = ({ posts }) => {
     const { id } = useParams();
     const post = posts.find(p => p.id === id);
+
+    // SEO for individual blog post (must be called before any conditional returns for hooks rules)
+    useSEO({
+        title: post ? `${post.title} | George Lolos` : 'Blog | George Lolos',
+        description: post ? post.description : 'Case studies and insights from George Lolos',
+        type: 'article',
+        structuredData: post ? generateBlogPostingSchema(post) : null
+    });
 
     if (!post) {
         return <Navigate to="/blog" replace />;
